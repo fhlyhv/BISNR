@@ -18,7 +18,7 @@ install_github(repo="fhlyhv/BISNR")
 If it does not work, please download this repository directly as a zip or tar.gz file and install the package locally.
 
 ## Example
-Below we provide an example of how to call the funtion BISN to learn time-varying graphical models from the synthetic data associated with the package. 
+Below we provide an example of how to call the funtion BISN to learn the graphical model structure from the synthetic data associated with the package. 
 ```r
 library(BISNR)
 
@@ -36,11 +36,7 @@ f1_score = 2*precision*recall/(precision + recall)
 cat("precision = ",precision,", recall = ", recall, ", f1_score = ", f1_score, "run_time = ", results$run_time)
 ```
 
-In the above the example, we simply call the funtion BISN as
-```r
-results = BISN(data)
-```
-where data is a n x p matrix with n observations for each of the p variables. Missing data can be represented by NA. The resulting results$Ksparse matrix will be a sparse matrix.
+In the above the example, we simply call the funtion BISN as `results = BISN(data)`, where data is a n x p matrix with n observations for each of the p variables. Missing data can be represented by NA. The resulting results$Ksparse matrix will be a sparse matrix.
 
 You need to reduce the step size upper bound `eta` (see below) if the algorithm divergences (e.g., some very large values suddenly appears). By default, we set `eta = 300`.
 ```r
