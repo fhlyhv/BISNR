@@ -18,7 +18,7 @@ install_github(repo="fhlyhv/BISNR")
 If it does not work, please download this repository directly as a zip or tar.gz file and install the package locally.
 
 ## Example
-Below we provide an example of how to call the funtion BISN to learn time-varying graphical models from the synthetic data associated with the package. To test the algorithm on your own data, please replace data with your own data when calling BISN. Note that data is a n x p matrix with n and p variables.
+Below we provide an example of how to call the funtion BISN to learn time-varying graphical models from the synthetic data associated with the package. 
 ```r
 library(BISNR)
 
@@ -35,3 +35,30 @@ recall = sum(results$Ksparse[lower.tri(results$Ksparse)] != 0 & Ktrue[lower.tri(
 f1_score = 2*precision*recall/(precision + recall)
 cat("precision = ",precision,", recall = ", recall, ", f1_score = ", f1_score, "run_time = ", results$run_time)
 ```
+
+In the above the example, we simply call the funtion BISN as
+```r
+results = BISN(data)
+```
+where data is a n x p matrix with n observations for each of the p variables. Missing data can be represented by NA. The resulting results$Ksparse matrix will be a sparse matrix.
+
+You need to reduce the step size upper bound `eta` (see below) if the algorithm divergences (e.g., some very large values suddenly appears). By default, we set `eta = 300`.
+```r
+results = BISN(data, eta = 100)
+```
+On the other hand, you may consider increasing `eta` if the algorithm doesn't diverge and you want to speed up the convergence.
+
+Instead of simply estmating L and D from the data, the BISN function here further thresholding <&lambda;<sub>jk</sub>> / (1 +<&lambda;<sub>jk</sub>>) using the method in 
+Section V in [3] to yield a sparse graph in an automated manner. However, due to the mean-filed approximation used in BISN, <&lambda;<sub>jk</sub>> of 
+elements (j, k) in the bottom-right corner are typically not well estimated when the sample size is small. More specifically, since K<sub>jk</sub> = [LDL<sup>T</sup>]<sub>jk</sub>, the elements in the bottom-right corner of K are the sum of a larger set of elements in L and D than the elements in the top-left corner. Due to the mean field 
+approximation, the estimates of <K<sub>jk</sub><sup>2</sup>> is typically corrupted by the variances of elements in L and D. These variances can be large when the sample size is small. As <&lambda;<sub>jk</sub>> is a function of <K<sub>jk</sub><sup>2</sup>>, it cannot be well estimated 
+either. To settle this problem, we run the original BISN algorithm again by reversely ordering the data (i.e., setting options.backward_pass = 1) and then average the 
+resulting <&lambda;<sub>jk</sub>> with that from the forward pass. Note that `backward_pass = TRUE` by default and it can be set to 'FALSE' when the sample 
+size is large.
+
+In addition, the kernel density of <&lambda;<sub>jk</sub>> / (1 +<&lambda;<sub>jk</sub>>) might be bumpy when the sample size is small. In this case, it is better to 
+plot out the density and choose the threshold of <&lambda;<sub>jk</sub>> manually.
+
+On the other hand, after estimating the sparse precision matrix, the BISN function can further reestimate the non-zero elements in the precision via maximum likelihood by setting `prm_learning = TRUE`. BISN can reliably estimate the non-zero elements when the sample size is relatively large, but it is recommended to reestimate the non-zero elements when the sample size is small. 
+
+In addition to the sparse K matrix, there are other output parameters. Please refer to the help file of the function BISN for more details.
