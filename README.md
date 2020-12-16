@@ -64,5 +64,7 @@ On the other hand, after estimating the sparse precision matrix, the BISN functi
 In addition to the sparse K matrix, there are other output parameters. Please refer to the help file of the function BISN for more details.
 
 [1] H. Yu, S. Wu, L. Xin, and J. Dauwels. Fast Bayesian Inference of Sparse Networks with Automatic Sparsity Determination. Journal of Machine Learning Research, 2020.
+
 [2] C. Sanderson, R. Curtin. Armadillo: a template-based C++ library for linear algebra. Journal of Open Source Software, 2016.
+
 [3] H. Yu, L. Xin, and J. Dauwels. Variational wishart approximation for graphical model selection: Monoscale and multiscale models. IEEE Transactions on Signal Processing, 2019.
