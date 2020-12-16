@@ -36,7 +36,7 @@ f1_score = 2*precision*recall/(precision + recall)
 cat("precision = ",precision,", recall = ", recall, ", f1_score = ", f1_score, "run_time = ", results$run_time)
 ```
 
-In the above the example, we simply call the funtion BISN as `results = BISN(data)`, where data is a n x p matrix with n observations for each of the p variables. Missing data can be represented by NA. The resulting results$Ksparse matrix will be a sparse matrix.
+In the above the example, we simply call the funtion BISN as ```r results = BISN(data)```, where data is a n x p matrix with n observations for each of the p variables. Missing data can be represented by NA. The resulting results$Ksparse matrix will be a sparse matrix.
 
 You need to reduce the step size upper bound `eta` (see below) if the algorithm divergences (e.g., some very large values suddenly appears). By default, we set `eta = 300`.
 ```r
