@@ -1,6 +1,6 @@
 # BISNR (R package for BISN)
 
-This R package implements the BISN algorithm proposed in [1]. 
+This R package implements the BISN algorithm proposed in [1]. The Matlab C++ Mex code can be found at https://github.com/fhlyhv/BISN.
 
 ## Dependence
 Please make sure to install the following package dependencies before using R package `BISNR`. 
@@ -62,3 +62,7 @@ plot out the density and choose the threshold of <&lambda;<sub>jk</sub>> manuall
 On the other hand, after estimating the sparse precision matrix, the BISN function can further reestimate the non-zero elements in the precision via maximum likelihood by setting `prm_learning = TRUE`. BISN can reliably estimate the non-zero elements when the sample size is relatively large, but it is recommended to reestimate the non-zero elements when the sample size is small. 
 
 In addition to the sparse K matrix, there are other output parameters. Please refer to the help file of the function BISN for more details.
+
+[1] H. Yu, S. Wu, L. Xin, and J. Dauwels. Fast Bayesian Inference of Sparse Networks with Automatic Sparsity Determination. Journal of Machine Learning Research, 2020.
+[2] C. Sanderson, R. Curtin. Armadillo: a template-based C++ library for linear algebra. Journal of Open Source Software, 2016.
+[3] H. Yu, L. Xin, and J. Dauwels. Variational wishart approximation for graphical model selection: Monoscale and multiscale models. IEEE Transactions on Signal Processing, 2019.
