@@ -1,6 +1,6 @@
 # BISNR (R package for BISN)
 
-This R package implements the BISN algorithm proposed in [1]. The Matlab C++ Mex code can be found at https://github.com/fhlyhv/BISN.
+This R package implements the BISN algorithm proposed in [1]. The Matlab C++ Mex code that implements the same algorithm can be found at https://github.com/fhlyhv/BISN.
 
 ## Dependence
 Please make sure to install the following package dependencies before using R package `BISNR`. 
