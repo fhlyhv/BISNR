@@ -5,7 +5,7 @@ This R package implements the BISN algorithm proposed in [1]. The Matlab C++ Mex
 ## Dependence
 Please make sure to install the following package dependencies before using R package `BISNR`. 
 ```r
-install.packages(c("Rcpp", "RcppArmadillo", "BH", "KernSmooth", "devtools"))
+install.packages(c("Rcpp", "RcppArmadillo", "BH", "KernSmooth", "tictoc", "devtools"))
 ```
 
 ## Installation
