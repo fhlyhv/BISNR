@@ -120,7 +120,7 @@ BISN <- function(data, eta = 300, max_iter = 1e4, tol = 1e-2, r = 0.5, s = ncol(
       S = t(data) %*% data / (t(obsv_mat) %*% obsv_mat - 1)
     } else S = cov(data)
     id_nonzero = which(Adj, arr.ind = TRUE)
-    id_nonzero = id_nonzero[id_nonzero[, 1] >= id_nonzero[, 2], ]
+    id_nonzero = id_nonzero[id_nonzero[, 1] > id_nonzero[, 2], ]
     Ksparse = QUICParameterLearning(Ksparse, S, id_nonzero[, 1], id_nonzero[, 2], 100, 100);
     cat("reestimating the non-zero elements is done, ")
     t = tictoc::toc()
